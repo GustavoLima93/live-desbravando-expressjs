@@ -1,0 +1,14 @@
+{
+  "name": "locatech-nodejs",
+  "version": "1.0.0",
+  "description": "--- presentation:   width: 1500   height: 900   theme: night.css --- <!-- slide -->",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
