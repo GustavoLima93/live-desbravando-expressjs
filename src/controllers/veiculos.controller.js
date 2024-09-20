@@ -6,6 +6,8 @@ import {
   deleteVeiculo
 } from '../dao/veiculos.dao.js';
 
+import { sendQueue } from '../shared/producer-rabbit.js'
+
 // dominio/veiculos?page=1&size=10
 
 export const getVeiculosController = async (req, res) => {
@@ -28,6 +30,7 @@ export const createVeiculoController = async (req, res) => {
   const veiculo = req.body;
   const { id } = await createVeiculo(veiculo);
 
+  await sendQueue(veiculo, 'queue_veiculos');
   res.status(201).json({ id });
 }
 

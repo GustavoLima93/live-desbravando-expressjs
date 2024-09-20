@@ -5,7 +5,10 @@ import './database/index.js';
 
 import initDatabase from './database/init-database.js';
 
+
 import routes from './routes/index.js';
+
+import { createTopic } from './shared/producer-kafka.js';
 
 initDatabase();
 
@@ -21,6 +24,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Oops ocorreu um erro ! ;(' });
 })
 
-app.listen(9000, () => {
+app.listen(9000, async () => {
   console.log('Servidor sendo executado 🛩️');
+  await createTopic();
 });

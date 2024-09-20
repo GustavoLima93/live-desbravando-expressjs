@@ -1,0 +1,10 @@
+POST http://localhost:9000/veiculos HTTP/1.1
+content-type: application/json
+
+	{
+		"marca": "Chevrolet",
+		"ano": "2011",
+		"cor": "azul",
+		"valor_diaria": 100,
+		"modelo": "corsa"
+	}

@@ -11,6 +11,8 @@ import { calculaValorAluguel } from '../use-cases/calcula-valor-aluguel.js';
 
 import { getVeiculoById } from '../dao/veiculos.dao.js';
 
+import { sendQueue } from '../shared/producer-kafka.js';
+
 // dominio/alugueis?page=1&size=10
 
 export const getAlugueisController = async (req, res) => {
@@ -34,7 +36,7 @@ export const createAluguelController = async (req, res) => {
   const veiculo = await getVeiculoById(aluguel.id_veiculo);
   const valorTotalDoAluguel = calculaValorAluguel(veiculo, aluguel, differenceInDays);
   const { id } = await createAluguel({...aluguel, valor_total: valorTotalDoAluguel});
-  
+  await sendQueue({...aluguel, valor_total: valorTotalDoAluguel});
   res.status(201).json({ id });
 }
 

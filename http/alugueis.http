@@ -1,0 +1,9 @@
+POST http://localhost:9000/alugueis HTTP/1.1
+content-type: application/json
+
+{
+	"id_veiculo": 1,
+	"id_pessoa": 1,
+	"data_inicio": "2023-01-01",
+	"data_fim": "2023-01-10"
+}
